@@ -60,16 +60,16 @@ set softtabstop=4 tabstop=4 shiftwidth=4 expandtab fileformat=unix encoding=utf-
 " ...
 " py, go, c, cpp file
 au BufNewFile,BufRead *.py,*go,*c,*cpp
-            \ set textwidth=79
-            \ autoindent
-            \ number
+    \ set textwidth=79
+    \ autoindent
+    \ number
 
 " js, html, css file
 au BufNewFile,BufRead *.js,*.html,*.css
-            \ set ts=2 sts=2 sw=2
-            \ textwidth=79
-            \ autoindent
-            \ number
+    \ set ts=2 sts=2 sw=2
+    \ textwidth=79
+    \ autoindent
+    \ number
 
 let python_highlight_all=1
 syntax on
@@ -77,19 +77,19 @@ syntax on
 "按F5运行python"
 map <F5> :Autopep8<CR> :w<CR> :call RunPython()<CR>
 function RunPython()
-  let mp = &makeprg
-  let ef = &errorformat
-  let exeFile = expand("%:t")
-  setlocal makeprg=python\ -u
-  set efm=%C\ %.%#,%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m
-  silent make %
-  copen
-  let &makeprg = mp
-  let &errorformat = ef
+    let mp = &makeprg
+    let ef = &errorformat
+    let exeFile = expand("%:t")
+    setlocal makeprg=python\ -u
+    set efm=%C\ %.%#,%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m
+    silent make %
+    copen
+    let &makeprg = mp
+    let &errorformat = ef
 endfunction
 
 " 加头copyright信息
-au BufNewFile *.[ch] 0read ~/git/gxy/rdc/copyright/copyright.c | $
-au BufNewFile *.php 0read ~/git/gxy/rdc/copyright/copyright.php | $
-au BufNewFile *.py 0read ~/git/gxy/rdc/copyright/copyright.py | $
-au BufNewFile *.go 0read ~/git/gxy/rdc/copyright/copyright.go | $
+au BufNewFile *.[ch] 0read ~/git/gxy/rdc/copyright/copyright.c | %s/Author:/Author: hech@hotdoor.cn/g | $
+au BufNewFile *.php 0read ~/git/gxy/rdc/copyright/copyright.php | %s/Author:/Author: hech@hotdoor.cn/g | $
+au BufNewFile *.py 0read ~/git/gxy/rdc/copyright/copyright.py | %s/Author:/Author: hech@hotdoor.cn/g | $
+au BufNewFile *.go 0read ~/git/gxy/rdc/copyright/copyright.go | %s/Author:/Author: hech@hotdoor.cn/g | $
